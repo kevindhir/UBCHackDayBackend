@@ -4,8 +4,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const emotionsApi = require('./emotionsApi').create();
 
+// returns: { sadness: 1.35964285e-7, happiness: 0.000208702579 }
 emotionsApi.getData('http://www.uni-regensburg.de/Fakultaeten/phil_Fak_II/Psychologie/Psy_II/beautycheck/english/durchschnittsgesichter/m(01-32)_gr.jpg', function (data) {
     console.log('data retrieved');
+    console.log(data);
+});
+
+// returns: { error: 'Cannot retrieve data for url' }
+emotionsApi.getData('', function (data) {
+    console.log('data cannot be retrieve');
     console.log(data);
 });
 

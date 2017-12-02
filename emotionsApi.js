@@ -35,11 +35,24 @@ class EmotionsApi {
         needle.request(
             'POST', apiUrl, data, options,
             function (err, response) {
-                var scores = response.body[0].scores;
-                cb({
-                    'sadness': scores.sadness,
-                    'happiness': scores.happiness
-                })
+                if (response.statusCode == 200) {
+                    var scores = response.body[0].scores;
+                    cb({
+                        'sadness': scores.sadness,
+                        'happiness': scores.happiness
+                    })
+                } else {
+                    var errMsg;
+                    if (err) {
+                        errMsg = err.message;
+                    } else {
+                        errMsg = 'Cannot retrieve data for url';
+                    }
+
+                    cb({
+                        'error': errMsg
+                    });
+                }
             }
         );
 
