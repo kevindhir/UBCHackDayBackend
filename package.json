@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/kevindhir/UBCHackDayBackend/issues"
   },
-  "homepage": "https://github.com/kevindhir/UBCHackDayBackend#readme"
+  "homepage": "https://github.com/kevindhir/UBCHackDayBackend#readme",
+  "dependencies": {
+    "nodemailer": "^4.4.0",
+    "express": "latest"
+  }
 }
