@@ -36,10 +36,13 @@ app.use(express.json());
 app.listen(8080, () => console.log('Example app listening on port 8080!'));
 
 app.post('/submit', function (request, response) {
+    const firstName = request.body.first_name;
+    const lastName = request.body.last_name;
     const email = request.body.email;
+
     const user = new User({
-        first_name: "Kevin",
-        last_name: "Dhir",
+        first_name: firstName,
+        last_name: lastName,
         email: email,
         happiness: -1,
         sadness: -1
