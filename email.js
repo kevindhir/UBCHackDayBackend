@@ -5,15 +5,13 @@ class EmailService {
 
 
     constructor() {
-        const transporter = nodemailer.createTransport({
+        this.transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: 'ubcneedafriend@gmail.com',
                 pass: 'ubclocalhackday'
             }
         });
-
-        this.transporter = transporter;
 
         this.transporter.verify(function (error, success) {
             if (error) {
