@@ -4,8 +4,12 @@
   "description": "The backend of our application created for UBC Hack Day.",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.2",
-    "nodemailer": "latest"
+    "body-parser": "^1.18.2",
+    "express": "latest",
+    "mongodb": "^2.2.33",
+    "mongodb-uri": "^0.9.7",
+    "mongoose": "^4.13.5",
+    "nodemailer": "^4.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,9 +23,5 @@
   "bugs": {
     "url": "https://github.com/kevindhir/UBCHackDayBackend/issues"
   },
-  "homepage": "https://github.com/kevindhir/UBCHackDayBackend#readme",
-  "dependencies": {
-    "nodemailer": "^4.4.0",
-    "express": "latest"
-  }
+  "homepage": "https://github.com/kevindhir/UBCHackDayBackend#readme"
 }
