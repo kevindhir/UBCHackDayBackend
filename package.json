@@ -1,0 +1,19 @@
+{
+  "name": "ubchackdaybackend",
+  "version": "1.0.0",
+  "description": "The backend of our application created for UBC Hack Day.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevindhir/UBCHackDayBackend.git"
+  },
+  "author": "Kevin Dhir Alan Zheng John Lee Minnie Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevindhir/UBCHackDayBackend/issues"
+  },
+  "homepage": "https://github.com/kevindhir/UBCHackDayBackend#readme"
+}
