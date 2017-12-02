@@ -1,22 +1,23 @@
 const nodemailer = require('nodemailer');
-const smtpConfig = {
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: true,
-    auth: {
-        user: 'ubcneedafriend@gmail.com',
-        pass: 'ubclocalhackday'
-    }
-};
 
 
 class EmailService {
 
 
     constructor() {
-        this.transporter = nodemailer.createTransport(smtpConfig);
-        transport.verify(function (error, success) {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'ubcneedafriend@gmail.com',
+                pass: 'ubclocalhackday'
+            }
+        });
+
+        this.transporter = transporter;
+
+        this.transporter.verify(function (error, success) {
             if (error) {
+                console.log("error with transporter");
                 console.log(error);
             } else {
                 console.log('Server is ready to take our messages');
@@ -29,6 +30,8 @@ class EmailService {
             this.constructor();
         }
 
+        const transporter = this.transporter;
+
         let mailOptions = {
             from: '"Friend Finder" <ubcneedafriend@gmail.com>', // sender address
             to: recipient,
@@ -36,6 +39,15 @@ class EmailService {
             text: 'Hello world?', // plain text body
             html: '<b>Hello world?</b>' // html body
         };
+
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        });
 
     };
 
