@@ -2,6 +2,13 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const emotionsApi = require('./emotionsApi').create();
+
+emotionsApi.getData('http://www.uni-regensburg.de/Fakultaeten/phil_Fak_II/Psychologie/Psy_II/beautycheck/english/durchschnittsgesichter/m(01-32)_gr.jpg', function (data) {
+    console.log('data retrieved');
+    console.log(data);
+});
+
 const emailService = require('./email.js');
 const app = express();
 const mongoose = require('mongoose');
@@ -61,4 +68,3 @@ app.post('/submit', function (request, response) {
     mailer.sendEmail(email);
     response.send("sent email to" + email);
 });
-

@@ -10,6 +10,7 @@
     "mongodb-uri": "^0.9.7",
     "mongoose": "^4.13.5",
     "nodemailer": "^4.4.0"
+    "needle": "^2.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
