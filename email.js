@@ -30,12 +30,23 @@ class EmailService {
 
         const transporter = this.transporter;
 
-        let mailOptions = {
-            from: '"Connect Two" <ubcneedafriend@gmail.com>', // sender address
-            to: recipient,
-            subject: 'We found you a connection!', // Subject line
-            text: `We would like to introduce you to ${user.name}! You two have similar traits. You can contact them at ${user.email}` // plain text body
-        };
+        let mailOptions;
+
+        if (typeof user !== 'undefined' && user) {
+            mailOptions = {
+                from: '"Connect Two" <ubcneedafriend@gmail.com>', // sender address
+                to: recipient,
+                subject: 'We found you a connection!', // Subject line
+                text: `We would like to introduce you to ${user.name}! You two have similar traits. You can contact them at ${user.email}` // plain text body
+            };
+        } else {
+            mailOptions = {
+                from: '"Connect Two" <ubcneedafriend@gmail.com>', // sender address
+                to: recipient,
+                subject: 'We have bad news', // Subject line
+                text: 'Well this is awkward. There were no users who matched with you on our system. We apologize.'
+            };
+        }
 
 
         transporter.sendMail(mailOptions, (error, info) => {
