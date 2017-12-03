@@ -17,7 +17,7 @@ class EmotionsApi {
         return new EmotionsApi();
     };
 
-    getData (faceUrl, cb) {
+    getData(faceUrl, cb) {
         const apiUrl = 'https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize';
 
         const data = {
@@ -27,7 +27,7 @@ class EmotionsApi {
         const options = {
             json: true,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/octet-stream',
                 'Ocp-Apim-Subscription-Key': '0d684e24b19b4a76bb60b92c22c43fc8'
             }
         };
@@ -35,15 +35,47 @@ class EmotionsApi {
         needle.request(
             'POST', apiUrl, data, options,
             function (err, response) {
-                var scores = response.body[0].scores;
-                cb({
-                    'sadness': scores.sadness,
-                    'happiness': scores.happiness
-                })
+                if (err) {
+                    cb({
+                        'sadness': -1,
+                        'hapiness': -1
+                    })
+                }
+
+                if (response.hasOwnProperty("body")) {
+                    if (response.body.hasOwnProperty("error")) {
+                        console.log(response.body.error);
+                        cb({
+                            'sadness': -1,
+                            'hapiness': -1
+                        })
+                    }
+                    else if (response.body[0].hasOwnProperty("scores")) {
+                        const scores = response.body[0].scores;
+                        cb({
+                            'sadness': scores.sadness,
+                            'happiness': scores.happiness
+                        })
+                    } else {
+                        console.log(response.body[0]);
+                        cb({
+                            'sadness': -1,
+                            'hapiness': -1
+                        })
+                    }
+                } else {
+                    cb({
+                        'sadness': -1,
+                        'hapiness': -1
+                    })
+                }
+
             }
         );
 
     };
+
+
 }
 
 module.exports = EmotionsApi;
