@@ -9,7 +9,7 @@ class EmailService {
             service: 'gmail',
             auth: {
                 user: 'ubcneedafriend@gmail.com',
-                pass: 'ubclocalhackday'
+                pass: ''
             }
         });
 
