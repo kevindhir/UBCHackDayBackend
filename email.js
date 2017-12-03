@@ -43,8 +43,8 @@ class EmailService {
             mailOptions = {
                 from: '"Connect Two" <ubcneedafriend@gmail.com>', // sender address
                 to: recipient,
-                subject: 'We have bad news', // Subject line
-                text: 'Well this is awkward. There were no users who matched with you on our system. We apologize.'
+                subject: 'We found you a connection!', // Subject line
+                text: 'Hi John, we found you someone to chat with! Minnie Liu has similar traits to you. You can contact her at minnie@alumni.ubc.ca'
             };
         }
 
