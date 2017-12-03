@@ -35,41 +35,24 @@ class EmotionsApi {
         needle.request(
             'POST', apiUrl, data, options,
             function (err, response) {
-                if (err) {
+                if (response.statusCode == 200) {
+                    var scores = response.body[0].scores;
                     cb({
-                        'sadness': -1,
-                        'hapiness': -1
+                        'sadness': scores.sadness,
+                        'happiness': scores.happiness
                     })
-                }
-
-                if (response.hasOwnProperty("body")) {
-                    if (response.body.hasOwnProperty("error")) {
-                        console.log(response.body.error);
-                        cb({
-                            'sadness': -1,
-                            'hapiness': -1
-                        })
-                    }
-                    else if (response.body[0].hasOwnProperty("scores")) {
-                        const scores = response.body[0].scores;
-                        cb({
-                            'sadness': scores.sadness,
-                            'happiness': scores.happiness
-                        })
-                    } else {
-                        console.log(response.body[0]);
-                        cb({
-                            'sadness': -1,
-                            'hapiness': -1
-                        })
-                    }
                 } else {
-                    cb({
-                        'sadness': -1,
-                        'hapiness': -1
-                    })
-                }
+                    var errMsg;
+                    if (err) {
+                        errMsg = err.message;
+                    } else {
+                        errMsg = 'Cannot retrieve data for url';
+                    }
 
+                    cb({
+                        'error': errMsg
+                    });
+                }
             }
         );
 
