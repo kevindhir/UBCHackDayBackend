@@ -81,6 +81,10 @@ const getMatch = function (user) {
     })
 };
 
+app.get('', function (request, response) {
+    res.send('This is not the place for you to be.');
+});
+
 app.post('/submit', function (request, response) {
     const name = request.body.name;
     const email = request.body.email;
@@ -113,7 +117,7 @@ app.post('/submit', function (request, response) {
         });
 
         const mailer = new emailService();
-        mailer.sendEmail(email);
+        mailer.sendEmail(email, bestMatch);
         response.send("sent email to" + email);
     });
 

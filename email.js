@@ -23,7 +23,7 @@ class EmailService {
         })
     }
 
-    sendEmail(recipient) {
+    sendEmail(recipient, user) {
         if (this.transporter == null) {
             this.constructor();
         }
@@ -31,11 +31,10 @@ class EmailService {
         const transporter = this.transporter;
 
         let mailOptions = {
-            from: '"Friend Finder" <ubcneedafriend@gmail.com>', // sender address
+            from: '"Connect Two" <ubcneedafriend@gmail.com>', // sender address
             to: recipient,
-            subject: 'Hello ✔', // Subject line
-            text: 'Hello world?', // plain text body
-            html: '<b>Hello world?</b>' // html body
+            subject: 'We found you a connection!', // Subject line
+            text: `We would like to introduce you to ${user.name}! You two have similar traits. You can contact them at ${user.email}` // plain text body
         };
 
 
