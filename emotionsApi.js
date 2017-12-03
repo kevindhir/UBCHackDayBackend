@@ -17,12 +17,9 @@ class EmotionsApi {
         return new EmotionsApi();
     };
 
-    getData(faceUrl, cb) {
+    getData(blob, cb) {
         const apiUrl = 'https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize';
-
-        const data = {
-            url: faceUrl
-        };
+        console.log("BLOB IS " + blob);
 
         const options = {
             json: true,
@@ -33,18 +30,21 @@ class EmotionsApi {
         };
 
         needle.request(
-            'POST', apiUrl, data, options,
+            'POST', apiUrl, blob, options,
             function (err, response) {
                 if (response.statusCode == 200) {
+                    console.log("200 " + response);
                     var scores = response.body[0].scores;
                     cb({
                         'sadness': scores.sadness,
                         'happiness': scores.happiness
                     })
                 } else {
+                    console.log("err");
                     var errMsg;
                     if (err) {
                         errMsg = err.message;
+                        console.log(errMsg);
                     } else {
                         errMsg = 'Cannot retrieve data for url';
                     }
