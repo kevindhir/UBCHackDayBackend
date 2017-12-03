@@ -17,7 +17,7 @@ class EmotionsApi {
         return new EmotionsApi();
     };
 
-    getData (faceUrl, cb) {
+    getData(faceUrl, cb) {
         const apiUrl = 'https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize';
 
         const data = {
@@ -27,7 +27,7 @@ class EmotionsApi {
         const options = {
             json: true,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/octet-stream',
                 'Ocp-Apim-Subscription-Key': '0d684e24b19b4a76bb60b92c22c43fc8'
             }
         };
@@ -57,6 +57,8 @@ class EmotionsApi {
         );
 
     };
+
+
 }
 
 module.exports = EmotionsApi;
