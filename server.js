@@ -82,7 +82,7 @@ const getMatch = function (user) {
 };
 
 app.get('', function (request, response) {
-    res.send('This is not the place for you to be.');
+    response.send('This is not the place for you to be.');
 });
 
 app.post('/submit', function (request, response) {
