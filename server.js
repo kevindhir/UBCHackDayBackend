@@ -98,6 +98,7 @@ app.post('/submit', function (request, response) {
     const name = request.body.name.text;
     const email = request.body.email.text;
     const image = request.body.image;
+
     console.log(image);
 
     emotionsApi.getData(image, function (value) {

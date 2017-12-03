@@ -41,6 +41,7 @@ class EmotionsApi {
                     })
                 } else {
                     console.log("err");
+                    console.log(err);
                     var errMsg;
                     if (err) {
                         errMsg = err.message;
