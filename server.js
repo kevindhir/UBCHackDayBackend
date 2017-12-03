@@ -8,6 +8,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema,
     ObjectID = Schema.ObjectID;
 
+app.use(allowCrossDomain);
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
 
 const mongoUri = 'mongodb://localhackday:testpassword@ds044667.mlab.com:44667/ubclocalhackday';
 mongoose.connect(mongoUri);
