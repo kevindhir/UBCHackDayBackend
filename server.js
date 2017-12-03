@@ -30,7 +30,7 @@ const User = mongoose.model('User', userSchema);
 app.use(bodyParser.json());
 app.use(express.json());
 
-const port = process.env.port || 1337;
+const port = process.env.PORT || 8000
 
 app.listen(port, () => console.log('Example app listening on port' + port));
 
