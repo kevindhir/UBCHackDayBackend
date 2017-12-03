@@ -29,7 +29,10 @@ const User = mongoose.model('User', userSchema);
 
 app.use(bodyParser.json());
 app.use(express.json());
-app.listen(8080, () => console.log('Example app listening on port 8080!'));
+
+const port = process.env.port || 1337;
+
+app.listen(port, () => console.log('Example app listening on port' + port));
 
 const distance = function (x1, x2, y1, y2) {
     Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
