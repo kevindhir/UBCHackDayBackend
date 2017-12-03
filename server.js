@@ -94,8 +94,9 @@ app.get('', function (request, response) {
 });
 
 app.post('/submit', function (request, response) {
-    const name = request.body.name;
-    const email = request.body.email;
+    console.log(request);
+    const name = request.body.name.text;
+    const email = request.body.email.text;
     const image = request.body.image;
 
     emotionsApi.getData(image, function (value) {
